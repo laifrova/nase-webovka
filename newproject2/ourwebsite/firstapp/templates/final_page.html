@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="cs">
+  <head>
+    {% load static %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Us</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        body {
+            background-color: #fffafb;
+            color: #555;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .pink-text { color: lightpink; }
+
+        /* Odpočet */
+        .countdown-box {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(255, 182, 193, 0.2);
+        }
+
+        /* Carousel vzkazy */
+        .carousel-item {
+            padding: 40px;
+            background: white;
+            border-radius: 20px;
+            min-height: 200px;
+        }
+
+        /* Časová osa (Timeline) */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 0;
+        }
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: lightpink;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+        }
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+        }
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: -10px;
+            background-color: white;
+            border: 4px solid lightpink;
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        .left { left: 0; text-align: right; }
+        .right { left: 50%; text-align: left; }
+        .right::after { left: -10px; }
+        .timeline-content {
+            padding: 20px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        /* Galerie */
+        .gallery-img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 15px;
+            transition: transform 0.3s;
+        }
+        .gallery-img:hover { transform: scale(1.03); }
+
+        /* Mapa styling */
+        .map-wrapper {
+            border-radius: 10px;
+            overflow: hidden;
+            border: 2px solid #ffdae0;
+            margin-top: 15px;
+        }
+
+        @media screen and (max-width: 600px) {
+            .timeline::after { left: 31px; }
+            .timeline-item { width: 100%; padding-left: 70px; padding-right: 25px; text-align: left; }
+            .timeline-item::after { left: 21px; }
+            .right { left: 0%; }
+        }
+    </style>
+  </head>
+  <body>
+
+    <div class="container py-5 text-center">
+        <h2 class="fw-bold mb-4 pink-text">Bojujeme spolu už...</h2>
+        <div class="countdown-box d-inline-block mb-5">
+            <h1 id="countdown" class="fw-bold display-4 pink-text">Načítám čas...</h1>
+            <p class="text-muted mb-0 small">(kecám, nejlepší měsíce) od 13. září 2025 </p>
+        </div>
+
+        <hr class="my-5 opacity-25">
+
+        <h2 class="fw-bold mb-4 pink-text">Pár vzkazů pro tebe</h2>
+        <div id="vzkazyCarousel" class="carousel slide carousel-dark shadow-sm d-inline-block w-100 mb-5" style="max-width: 650px;">
+            <div class="carousel-inner text-center">
+                <div class="carousel-item active">
+                    <p class="fs-4 italic">Jsem za tebe šíleně vděčná, za to jak všechno máme, co pro nás děláš a jaký jsi člověk!</p>
+                </div>
+                <div class="carousel-item">
+                    <p class="fs-4">Prosím napík spolu každý den!</p>
+                </div>
+                <div class="carousel-item">
+                    <p class="fs-4">Miluju když se Ti rozzáří oči, když Tě něco nadchne</p>
+                </div>
+                <div class="carousel-item">
+                    <p class="fs-4">I ten tvůj ragebait mi občas chybí</p>
+                </div>
+                <div class="carousel-item">
+                    <p class="fs-4">Miluju naše dates, teda když zrovna neprohrávám v minigolfu(nebo v čemkoliv jiným)</p>
+                </div>
+                <div class="carousel-item">
+                    <p class="fs-4">Těším se až spolu budeme více cestovat</p>
+                </div>
+                <div class="carousel-item">
+                    <p class="fs-4">Přestaň mě lechtat k breku hahah</p>
+                </div>
+                <div class="carousel-item">
+                    <p class="fs-4">Dáváš ty nejkrásnější kytičky</p>
+                </div>
+                <div class="carousel-item">
+                    <p class="fs-4">Prosím více fotek spolu</p>
+                </div>
+                <div class="carousel-item">
+                    <p class="fs-4">Miluju jaký jsi s pejsky</p>
+                </div>
+                <div class="carousel-item">
+                    <p class="fs-4">Necháš mě někdy vyhrát v Clashku????!</p>
+                </div>
+                <div class="carousel-item">
+                    <p class="fs-4">Slibuju, že se naučím vařit kachnu</p>
+                </div>
+                <div class="carousel-item">
+                    <p class="fs-4">Best fuckin driveer</p>
+                </div>
+                <div class="carousel-item">
+                    <p class="fs-4">Moc mě potěšilo, že sis mě dal na tapetu a necháš mi poličku u Tebe v pokoji</p>
+                </div>
+                <div class="carousel-item">
+                    <p class="fs-4">Nikdy si mě nezklamal</p>
+                </div>
+                <div class="carousel-item">
+                    <p class="fs-4">Ur so handsome, i když o tom někdy pochybuješ, kdyby ses viděl, tak jak Tě vidím</p>
+                </div>
+                <div class="carousel-item">
+                    <p class="fs-4">Miluju, když hrajeme kartičkyyy</p>
+                </div>
+                <div class="carousel-item">
+                    <p class="fs-4">Obdivuji Tvoje nápady, jako třeba to s tím stromečkem, loved that</p>
+                </div>
+                <div class="carousel-item">
+                    <p class="fs-4">Miluju prstýnek od tebe!!nosím každý den</p>
+                </div>
+                <div class="carousel-item">
+                    <p class="fs-4">Mám ráda jak jsi ambiciózní a těším se až uvidím tvoje úspěchy</p>
+                </div>
+                <div class="carousel-item">
+                    <p class="fs-4">Miluju vzpomínat na naše začátky</p>
+                </div>
+                <div class="carousel-item">
+                    <p class="fs-4">Umíš skvěle vařit</p>
+                </div>
+                <div class="carousel-item">
+                    <p class="fs-4">Nikdy mě nenecháš pochybovat</p>
+                </div>
+                <div class="carousel-item">
+                    <p class="fs-4">Posloucháš každou moji yapping session</p>
+                </div>
+                <div class="carousel-item">
+                    <p class="fs-4">Miluju, že jsme spolu comfy a můžu Ti říct cokoliv</p>
+                </div>
+                <div class="carousel-item">
+                    <p class="fs-4">V gymu seš fakt top</p>
+                </div>
+                <div class="carousel-item">
+                    <p class="fs-4">Moc se mi líbí, jaký vztah máš s rodinou</p>
+                </div>
+                <div class="carousel-item">
+                    <p class="fs-4">Jsi hodně empatický a největší podpora</p>
+                </div>
+                <div class="carousel-item">
+                    <p class="fs-4">Líbí se mi jak jsi konzistentní</p>
+                </div>
+                 <div class="carousel-item">
+                    <p class="fs-4">Miluju, když se mi otevřeš</p>
+                </div>
+                 <div class="carousel-item">
+                    <p class="fs-4">best boyfrieeend eveer</p>
+                </div>
+                 <div class="carousel-item">
+                    <p class="fs-4">nikdy jsem nezažila takové connection</p>
+                </div>
+                 <div class="carousel-item">
+                    <p class="fs-4">i love ur eyes and ur smile</p>
+                </div>
+                 <div class="carousel-item">
+                    <p class="fs-4">miluju posílat si Tiktoky</p>
+                </div>
+                 <div class="carousel-item">
+                    <p class="fs-4">facetimeee</p>
+                </div>
+                 <div class="carousel-item">
+                    <p class="fs-4">probudit se vedle Tebe</p>
+                </div>
+                <div class="carousel-item">
+                    <p class="fs-4">miluju, když spolu někam jdeme</p>
+                </div>
+                <div class="carousel-item">
+                    <p class="fs-4">I fuckin love you with all my heart!!!!!</p>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#vzkazyCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#vzkazyCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </button>
+        </div>
+
+        <hr class="my-5 opacity-25">
+
+        <h2 class="fw-bold mb-4 pink-text">Us 📸 (doufám, že ještě dofotíme!!)</h2>
+        <div class="row g-4 mb-5">
+            <div class="col-6 col-md-4"><img src="{% static 'images/my1.jpeg' %}" class="gallery-img shadow border border-white"></div>
+            <div class="col-6 col-md-4"><img src="{% static 'images/my2.jpeg' %}" class="gallery-img shadow border border-white"></div>
+            <div class="col-12 col-md-4"><img src="{% static 'images/my3.jpeg' %}" class="gallery-img shadow border border-white"></div>
+        </div>
+
+        <div class="mt-5 pb-5 text-center">
+            <a href="{% url 'home' %}" class="btn btn-outline-secondary btn-sm rounded-pill px-4">← Zpět na úvod</a>
+        </div>
+    </div>
+
+    <script>
+        function updateCountdown() {
+            const startDate = new Date("September 13, 2025 00:00:00").getTime();
+            const now = new Date().getTime();
+            const diff = now - startDate;
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById("countdown").innerHTML =
+                days + "d " + hours + "h " + minutes + "m " + seconds + "s";
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
