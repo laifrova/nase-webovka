@@ -22,7 +22,6 @@ def game(request):
         # Logika vyhodnocení
         if player_choice == computer_choice:
             result = "It's a draw! 😐"
-            reaction_image = ""
         elif (player_choice == "rock" and computer_choice == "scissors") or \
                 (player_choice == "paper" and computer_choice == "rock") or \
                 (player_choice == "scissors" and computer_choice == "paper"):
